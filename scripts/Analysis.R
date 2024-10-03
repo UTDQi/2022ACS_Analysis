@@ -97,4 +97,4 @@ print(sd(merged_df$error))
 print(mean(merged_df$percent_error))
 
 #### Write_csv
-write_csv(merged_df, file = "data/analysis/estimate.csv")
+write_csv(merged_df, file = "data/analysis/result.csv")
