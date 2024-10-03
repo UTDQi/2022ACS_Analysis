@@ -14,21 +14,18 @@ library(tidyverse)
 #### read data ####
 data <- read.csv("data/raw/usa_00001.csv")
 
-result <- data %>%
+estimate <- data %>%
   filter(EDUCD == 116) %>%
   count(STATEICP)
 
-# View the result
-print(result)
-
-result = result %>%
+estimate = estimate %>%
   mutate(estimated_respondents = floor( n * 391171/6336))
 
 actural_n <- data %>%
   count(STATEICP)%>%
   rename(actural_respondents = n)
 
-merged_df <- merge(result, actural_n, by = "STATEICP")
+merged_df <- merge(estimate, actural_n, by = "STATEICP")
 
 merged_df <- merged_df %>% mutate(error = estimated_respondents - actural_respondents)
 merged_df <- merged_df %>% mutate(percent_error = error/actural_respondents)
@@ -100,4 +97,4 @@ print(sd(merged_df$error))
 print(mean(merged_df$percent_error))
 
 #### Write_csv
-write_csv(merged_df, file = "data/analysis/result.csv")
+write_csv(merged_df, file = "data/analysis/estimate.csv")
