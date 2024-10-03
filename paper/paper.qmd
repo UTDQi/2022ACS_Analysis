@@ -117,7 +117,7 @@ $$
 
 # Discussion {#discussion}
   We see that the error is large for most states, and the average percentage error is at 19%. This is because educational status is different across states, different states have different ratio of people with doctor's degree. So our initial hypothesis to use ratio estimation was incorrect. 
-  Form the negative mean error we see that California is a state with higher ratio of people who have a doctors degree. So using ratio estimation via the data form California will overestimate the number of respondents of most states. Some states, however, have even higer ratio of people with doctor degree, our estimation underestimated those. 
+  Form the negative mean error we see that California is a state with higher ratio of people who have a doctors degree. So using ratio estimation via the data form California will underestimate the number of respondents of most states. Some states, however, have even higher ratio of people with doctor degree, our estimation overestimated number of respondents for those. 
 
 # Conclusion
   The result suggest that Ratio estimator using the data of people with doctor degree from a single state does not estimate the data well. Future studies can use more sophisticated ways of estimation, such as regression or neural networks. 
