@@ -71,7 +71,7 @@ $$
 Ratio_{71} = \frac{391171}{6336}
 $$
 
-Then For any state $S$ with number of respondents that had a doctoral degree as their highest educational attainment $D_S$, we estimate the number of respondents in that state as:
+Then for any state $S$ with number of respondents that had a doctoral degree as their highest educational attainment $D_S$, we estimate the number of respondents in that state as:
 $$
 \hat{R_{S}} = \lfloor D_S \times \frac{391171}{6336} \rfloor
 $$
@@ -80,10 +80,10 @@ Where $\lfloor\ \rfloor$ is the floor function that rounds a number to the large
 
 # Results
 We used the Ratio Estimator Approach to as defined in the [Method](#method) section. And compared it with the actual number of respondents in that state. 
-(@fig-compare1) and (@fig-compare2) is the full table of estimated and actual number of participants in each state:
+(@tbl-compare) is the full table of estimated and actual number of participants in each state:
 ```{r}
-#| label: fig-compare1
-#| fig-cap: Comparison of estimated and actual data
+#| label: tbl-compare
+#| tbl-cap: Comparison of estimated and actual data
 #| include: true
 #| echo: false
 #| warning: false
@@ -91,34 +91,10 @@ We used the Ratio Estimator Approach to as defined in the [Method](#method) sect
 
 state_errors = analysis_data %>% select(STATENAME, estimated_respondents, actural_respondents,error)
 
-filtered_states <- state_errors %>%
-  filter(!(STATENAME %in% c("Arizona", "Colorado", "Idaho", "Montana", "Nevada", 
-                             "New Mexico", "Utah", "Wyoming", "California", 
-                             "Oregon", "Washington", "Alaska", "Hawaii", 
-                             "Puerto Rico", "District of Columbia")))
-
-kable(filtered_states, col.names = c("State", "Estimated respondents" , "Actural respondents","Error"), caption = "Error Rates by State")
-
+kable(state_errors, col.names = c("State", "Estimated respondents" , "Actural respondents","Error"))
 ```
 
-```{r}
-#| label: fig-compare2
-#| fig-cap: Comparison of estimated and actual data 
-#| include: true
-#| echo: false
-#| warning: false
-#| message: false
 
-filtered_states <- state_errors %>%
-  filter((STATENAME %in% c("Arizona", "Colorado", "Idaho", "Montana", "Nevada", 
-                             "New Mexico", "Utah", "Wyoming", "California", 
-                             "Oregon", "Washington", "Alaska", "Hawaii", 
-                             "Puerto Rico", "District of Columbia")))
-
-kable(filtered_states, col.names = c("State", "Estimated respondents" , "Actural respondents","Error"), caption = "Error Rates by State")
-
-
-```
 
 The mean and  of error($e_S = \hat{R_{S}} - R_{S}$) is: 
 $$
@@ -129,13 +105,13 @@ $$
 \sigma(e) = 21219.03
 $$
 
-Also if we define mean percentage error ($E(P_e)$)by:
+Also if we define mean percentage error ($\bar{P_e}$)by:
 $$
 \bar{P_e} = mean(R_s/e_s)
 $$
 We have 
 $$
-\bar{P_e} = -0.1956
+\bar{P_e} = -0.1955785
 $$
 
 
@@ -146,6 +122,9 @@ $$
 # Conclusion
   The result suggest that Ratio estimator using the data of people with doctor degree from a single state does not estimate the data well. Future studies can use more sophisticated ways of estimation, such as regression or neural networks. 
   
+\newpage
+
+
 \newpage
 
 # References

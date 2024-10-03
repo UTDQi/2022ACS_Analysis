@@ -31,6 +31,7 @@ actural_n <- data %>%
 merged_df <- merge(result, actural_n, by = "STATEICP")
 
 merged_df <- merged_df %>% mutate(error = estimated_respondents - actural_respondents)
+merged_df <- merged_df %>% mutate(percent_error = error/actural_respondents)
 
 # Create the STATENAME column using case_when()
 merged_df  <- merged_df  %>%
@@ -96,7 +97,7 @@ merged_df  <- merged_df  %>%
 #### compute mean and variance error
 print(mean(merged_df$error))
 print(sd(merged_df$error))
-
+print(mean(merged_df$percent_error))
 
 #### Write_csv
 write_csv(merged_df, file = "data/analysis/result.csv")
